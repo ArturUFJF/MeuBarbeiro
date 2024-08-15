@@ -4,7 +4,9 @@ import AppLoading from "expo-app-loading";
 import {useFonts, Raleway_900Black, Raleway_600SemiBold, Raleway_700Bold} from "@expo-google-fonts/raleway";
 import {SquadaOne_400Regular} from "@expo-google-fonts/squada-one";
 import {Oswald_300Light, Oswald_400Regular, Oswald_500Medium, Oswald_600SemiBold, Oswald_700Bold} from "@expo-google-fonts/oswald";
-import Navbar from "../components/navbar/navbar"
+import Navbar from "../components/navbar/navbar";
+import Home from "../components/home/home";
+import Login from "../components/login/login"
 
 export default function Index(){
     
@@ -27,6 +29,7 @@ return<>
     <SafeAreaView style={{flex: 1}}>
     <StatusBar/>
         <Navbar/>
+        <Login/>
     
     </SafeAreaView>
 </>
