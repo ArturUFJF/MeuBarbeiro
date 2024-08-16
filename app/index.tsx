@@ -31,23 +31,11 @@ return<>
     <ScrollView>
     <SafeAreaView style={{flex: 1}}>
 
-    <View>
-
         <Navbar/>
         <Home/>        
     
-    </View>
-
     </SafeAreaView>
     </ScrollView>
 </>
 
 }
-
-const styles = StyleSheet.create({
-    app: {
-        justifyContent: "center",
-        alignContent: "center",
-        alignItems: "center",
-    },
-})
