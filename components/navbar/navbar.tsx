@@ -1,5 +1,5 @@
 import React from "react";
-import {Image, Text, View, StyleSheet, Animated} from "react-native";
+import {Image, Text, View, StyleSheet, Pressable, Animated} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome"
 
@@ -8,19 +8,19 @@ export default function Navbar () {
     <View style ={styles.body}>
 
     <View style={styles.bodyNav}>
-        <View style={styles.button}>
+        <Pressable style={styles.button}>
         <AntDesign name="menu-fold" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Menu</Text>
-        </View>
+        </Pressable>
 
-        <View style={styles.button}>
+        <Pressable style={styles.button}>
         <FontAwesome name="calendar-o" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Agenda</Text>
-        </View>
+        </Pressable>
 
-        <View style={styles.button}>
+        <Pressable style={styles.button}>
         <FontAwesome name="user-circle-o" size={28} color="#FFF"/>
-        </View>
+        </Pressable>
     </View>
 
     <View style={styles.logoView}>

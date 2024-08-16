@@ -1,32 +1,36 @@
 import React from "react";
-import {View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity} from "react-native";
+import {ScrollView, View, Text, StyleSheet, SafeAreaView, TextInput, Pressable} from "react-native";
 
 export default function login(){
     return <>
-    
+
+    <ScrollView>
+
     <SafeAreaView style={styles.body}>
         <Text style={styles.welcome}>Bem-vindo(a)!</Text>
     
     <View style={styles.loginView}>
         
         <Text style={styles.fieldName}> Email</Text>
-        <TextInput style={styles.field}/>
+        <TextInput maxLength={70} style={styles.field}/>
         <Text style={styles.fieldName}> Senha</Text>
-        <TextInput style={styles.field}/>
+        <TextInput maxLength={16} secureTextEntry style={styles.field}/>
 
-        <TouchableOpacity style={styles.button}>
+        <Pressable style={styles.button}>
             {
                 // adicionar simulação de validação depois
             }
             <Text style={styles.buttonText}>Entrar</Text>
-        </TouchableOpacity>
+        </Pressable>
 
     </View>
     
     </SafeAreaView>
-
+            </ScrollView>
+     
     </>
 }
+
 
 const styles = StyleSheet.create({
 
@@ -37,25 +41,26 @@ const styles = StyleSheet.create({
     welcome: {
         paddingTop: 28,
         fontFamily: "SquadaOne",
-        fontSize: 40,
+        fontSize: 48,
     },
 
     loginView: {
-        marginTop: 64,
+        marginTop: "10%",
         width: "80%",
     },
 
     fieldName: {
         fontFamily: "OswaldSemiBold",
-        fontSize: 20,
+        fontSize: 24,
         paddingBottom: 4,
+
     },
 
     field: {
         alignSelf: "center",
         width: "100%",
         padding: 8,
-        height: 48,
+        height: 52,
         borderWidth: 2,
         borderColor: "#4E8098",
         backgroundColor: "#CED3DC",
@@ -66,10 +71,20 @@ const styles = StyleSheet.create({
     button: {
         width: "100%",
         marginTop: 28,
+        marginBottom: 40,
         height: 56,
         backgroundColor: "#A31621",
         borderRadius: 16,
         justifyContent: "center",
+        
+        shadowColor: "#000",
+        shadowOffset: {
+	    width: 2,
+	    height: 4,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 4,
+        elevation: 5, 
     },
 
     buttonText: {
