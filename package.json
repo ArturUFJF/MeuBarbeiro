@@ -21,6 +21,8 @@
     "@expo-google-fonts/squada-one": "^0.2.3",
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/native": "^6.0.2",
+    "@react-navigation/native-stack": "^6.11.0",
+    "@react-navigation/stack": "^6.4.1",
     "@unimodules/core": "^7.1.2",
     "@unimodules/react-native-adapter": "^6.3.9",
     "events": "^3.3.0",

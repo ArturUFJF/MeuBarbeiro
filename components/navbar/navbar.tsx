@@ -1,10 +1,16 @@
 import React from "react";
 import {Image, Text, View, StyleSheet, Pressable, Animated} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import FontAwesome from "react-native-vector-icons/FontAwesome"
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Home from '../home/home';
+import { useNavigation } from "@react-navigation/native";
+
 
 export default function Navbar () {
+    const navigation = useNavigation();
+
     return <>
+   
     <View style ={styles.body}>
 
     <View style={styles.bodyNav}>
@@ -37,9 +43,9 @@ export default function Navbar () {
 const styles = StyleSheet.create ({
     
     body: {
-        position: "static",
-        display: "flex",
         flexDirection: "column",
+        position: "static",
+        zIndex: 99, 
     },
     
     bodyNav: {

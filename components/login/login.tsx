@@ -26,7 +26,7 @@ export default function login(){
     </View>
     
     </SafeAreaView>
-            </ScrollView>
+    </ScrollView>
      
     </>
 }
