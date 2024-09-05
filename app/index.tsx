@@ -4,11 +4,15 @@ import AppLoading from "expo-app-loading";
 import {useFonts, Raleway_600SemiBold, Raleway_700Bold, Raleway_900Black} from "@expo-google-fonts/raleway";
 import {SquadaOne_400Regular} from "@expo-google-fonts/squada-one";
 import {Oswald_300Light, Oswald_400Regular, Oswald_500Medium, Oswald_600SemiBold, Oswald_700Bold} from "@expo-google-fonts/oswald";
-import Navbar from "../components/navbar/navbar";
-import Home from "../components/home/home"
-import Login from "../components/login/login";
+import NavbarScreen from "../components/navbar/navbar";
+import HomeScreen from "../components/home/home"
+import LoginScreen from "../components/login/login";
+import ScheduleScreen from "../components/schedule/schedule";
+import { createStackNavigator } from "@react-navigation/stack";
 
 export default function Index(){
+
+    const Stack = createStackNavigator();
     
     const [LoadFont] = useFonts({
         "RalewaySemiBold": Raleway_600SemiBold,
@@ -28,14 +32,12 @@ export default function Index(){
 
 return<>
 
-    <ScrollView>
-    <SafeAreaView style={{flex: 1}}>
-
-        <Navbar/>
-        <Home/>        
-    
-    </SafeAreaView>
-    </ScrollView>
+<NavbarScreen/>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Login" component={LoginScreen}/>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="Schedule" component={ScheduleScreen}/>
+    </Stack.Navigator>
 </>
 
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import {View, StyleSheet} from "react-native";
-import Product from "../lists/product";
+import Barbershop from "../lists/barbershop";
 import Search from "../search";
 import Navbar from "../navbar/navbar";
 import { ScrollView } from "react-native-gesture-handler";
@@ -12,14 +12,14 @@ export default function home(){
     <View style={styles.list}>
         
         <Search/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
-        <Product/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
+        <Barbershop/>
         
         </View>
     

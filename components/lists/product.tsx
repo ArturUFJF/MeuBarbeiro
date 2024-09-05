@@ -1,83 +1,76 @@
 import React from "react";
-import {Text, View, StyleSheet, Dimensions, Image, Pressable} from "react-native";
+import { Image, View, Text, StyleSheet } from "react-native";
 
-export default function product(){
-return <>
-
-    <Pressable style={styles.body}>
+export default function Product(){
+    return <>
+    
+    <View style={styles.body}>
 
     <Image style={styles.image}
     source={require("../../assets/images/BarbeariaMineira.jpg")}    
     />
 
-    <Text style={styles.title}>Barbearia Mineira</Text>
-
-    <View style={styles.spacing}> 
-    <Text style={styles.description}>Barbearia especializada em cortes casuais masculinos da tendência.</Text>
-    <Text style={styles.price}>R$ 30,00 - R$ 150,00</Text>
+    <View >
+    <Text style={styles.barberShopText}>Barbearia Mineira</Text>
+    <Text style={styles.priceText}>R$ 40,00</Text>
+    <Text style={styles.serviceText}>Corte - 10:30h</Text>
     </View>
 
-    </Pressable>
 
-</>
-}
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
-
-const styles = StyleSheet.create({
+    </View>
     
+    </>
+
+}
+const styles = StyleSheet.create({
     body: {
-        borderRadius: 16,
-        backgroundColor: "#CED3DC",
-        width: 150,
-        height: 240,
-        flexDirection: "column",
-        
+        marginTop: 20, 
+        backgroundColor: "#FCF7F8",
+        display: "flex",
+        width: "88%",
+        height: "10%",
+        alignSelf: "center",
+        alignItems: "center",
+        flexDirection: "row",
+        borderBottomWidth: 2,
+        borderColor: "black",
+
         shadowColor: "#000",
         shadowOffset: {
-        	width: 4,
-        	height: 2,
+	    width: 0,
+	    height: 2,
         },
-        shadowOpacity: 0.23,
-        shadowRadius: 2.92,
-        elevation: 5,
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,   
     },
 
     image: {
-        width: "100%",
-        height: "40%",
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
-        borderBottomColor: "black",
-        borderBottomWidth: 1,
-    },
-
-    title: {
-        fontFamily: "SquadaOne",
-        fontSize: 20,
-        textAlign: "center",
-        padding: 6,
-        borderBottomColor: "black",
-        borderBottomWidth: 1,
-    },
-
-    description: {
-        fontFamily: "OswaldRegular",
-        fontSize: 13,
-        padding: 4,
-    },
-
-    price: {
-        fontFamily: "SquadaOne",
+        borderRadius: 360,
+        width: "16%",
+        height: "80%",
         alignSelf: "center",
-        fontSize: 16,
-        padding: 12,
-        color: "#A31621",
     },
 
-    spacing: {
-        flex: 1,
-        justifyContent: "space-between",
+    barberShopText: {
+        fontFamily: "SquadaOne",
+        fontSize: 18,
+        paddingLeft: 16,
+    },  
+
+    priceText: {
+        fontFamily: "SquadaOne",
+        fontSize: 16,
+        color: "#A31621",
+        paddingLeft: 16,
+        paddingTop: 4,
     },
+
+    serviceText: {
+        fontFamily: "OswaldRegular",
+        color: "#272D2D",
+        fontSize: 14,
+        paddingLeft: 16,
+    }
 })

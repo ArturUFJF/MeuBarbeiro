@@ -2,29 +2,30 @@ import React from "react";
 import {Image, Text, View, StyleSheet, Pressable, Animated} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Home from '../home/home';
 import { useNavigation } from "@react-navigation/native";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
 
 
 export default function Navbar () {
     const navigation = useNavigation();
+    // const Drawer = createDrawerNavigator();
 
     return <>
    
     <View style ={styles.body}>
 
     <View style={styles.bodyNav}>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Home")}>
         <AntDesign name="menu-fold" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Menu</Text>
         </Pressable>
 
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Schedule")}>
         <FontAwesome name="calendar-o" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Agenda</Text>
         </Pressable>
 
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Login")}>
         <FontAwesome name="user-circle-o" size={28} color="#FFF"/>
         </Pressable>
     </View>
