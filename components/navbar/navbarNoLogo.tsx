@@ -2,28 +2,25 @@ import React from "react";
 import {Image, Text, View, StyleSheet, Pressable, Animated} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import CustomDrawer from "../navbar/sidebar";   
-import LoginScreen from "../login/login";
-import ScheduleScreen from "../schedule/schedule";
-import HomeScreen from "../home/home";
+import { useNavigation } from "@react-navigation/native";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
 
 
-export default function Navbar () {
-    const Drawer = createDrawerNavigator();
+export default function NavbarNoLogo () {
     const navigation = useNavigation();
-    
+    // const Drawer = createDrawerNavigator();
+
     return <>
+   
     <View style ={styles.body}>
 
     <View style={styles.bodyNav}>
-        <Pressable style={styles.button} onPress={()=>navigation.dispatch(DrawerActions.toggleDrawer())}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Home")}>
         <AntDesign name="menu-fold" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Menu</Text>
         </Pressable>
 
-        <Pressable style={styles.button} onPress={()=>navigation.navigate("Agenda")}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Schedule")}>
         <FontAwesome name="calendar-o" size={28} color="#FFF"/>
         <Text style={styles.buttonText}>Agenda</Text>
         </Pressable>
@@ -34,12 +31,6 @@ export default function Navbar () {
     </View>
     
     </View>
-
-    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Login" screenOptions={{ headerShown: false }}>
-        <Drawer.Screen name="Home" component={HomeScreen}/>
-        <Drawer.Screen name="Login" component={LoginScreen}/>
-        <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
-    </Drawer.Navigator>
     </>
 }
 
@@ -83,19 +74,4 @@ const styles = StyleSheet.create ({
         flexDirection: "row",
     },
 
-    logoView:{
-        position: "relative",
-        display: "flex",
-        width: '100%',  
-        alignItems: "center",
-        borderBottomWidth: 10,
-        borderBottomColor: "#A31621",
-    },
-
-    logo: {
-        width: 200,
-        height: 100,
-        marginTop: 8,
-        marginBottom: 12, 
-    },
 })

@@ -9,7 +9,7 @@ export default function home(){
 
     return <>
 
-    <View style={styles.list}>
+    <ScrollView contentContainerStyle={styles.list}>
         
         <Search/>
         <Barbershop/>
@@ -21,7 +21,7 @@ export default function home(){
         <Barbershop/>
         <Barbershop/>
         
-        </View>
+        </ScrollView>
     
     </>
 }
