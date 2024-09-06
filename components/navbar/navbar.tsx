@@ -8,6 +8,7 @@ import CustomDrawer from "../navbar/sidebar";
 import LoginScreen from "../login/login";
 import ScheduleScreen from "../schedule/schedule";
 import HomeScreen from "../home/home";
+import ContactScreen from "../contact/contact";
 
 
 export default function Navbar () {
@@ -35,10 +36,18 @@ export default function Navbar () {
     
     </View>
 
-    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Login" screenOptions={{ headerShown: false }}>
+    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Login" screenOptions={{
+    headerShown: false,
+    swipeEnabled: true, // Oculta o cabeçalho
+    // drawerActiveTintColor: 'red', // Cor do texto/ícone quando o item está ativo
+    // drawerInactiveTintColor: 'red', // Cor do texto/ícone quando o item está inativo
+    // drawerActiveBackgroundColor: 'red', // Cor de fundo do item ativo
+    // drawerInactiveBackgroundColor: 'red', // Cor de fundo do item inativo
+}}>
         <Drawer.Screen name="Home" component={HomeScreen}/>
         <Drawer.Screen name="Login" component={LoginScreen}/>
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
+        <Drawer.Screen name="Contact" component={ContactScreen}/>
     </Drawer.Navigator>
     </>
 }
@@ -81,21 +90,5 @@ const styles = StyleSheet.create ({
 
     button: {
         flexDirection: "row",
-    },
-
-    logoView:{
-        position: "relative",
-        display: "flex",
-        width: '100%',  
-        alignItems: "center",
-        borderBottomWidth: 10,
-        borderBottomColor: "#A31621",
-    },
-
-    logo: {
-        width: 200,
-        height: 100,
-        marginTop: 8,
-        marginBottom: 12, 
     },
 })
