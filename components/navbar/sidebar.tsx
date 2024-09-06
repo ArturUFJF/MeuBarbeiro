@@ -53,7 +53,7 @@ export default function CustomDrawer(props) {
             focused={props.state.routeNames[props.state.index] === 'Login'}
             style={styles.item}
             label="Admin"
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('Admin')}
             icon={({ color, size }) => <MaterialIcons name="admin-panel-settings" size={26} color={'black'} />}
             labelStyle={styles.label}
         />

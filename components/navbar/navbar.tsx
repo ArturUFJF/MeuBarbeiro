@@ -5,7 +5,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawer from "../navbar/sidebar";   
-import LoginScreen from "../login/login";
+import AdminScreen from "../admin/admin";
 import ScheduleScreen from "../schedule/schedule";
 import HomeScreen from "../home/home";
 import ContactScreen from "../contact/contact";
@@ -29,14 +29,14 @@ export default function Navbar () {
         <Text style={styles.buttonText}>Agenda</Text>
         </Pressable>
 
-        <Pressable style={styles.button} onPress={()=>navigation.navigate("Login")}>
+        <Pressable style={styles.button} onPress={()=>navigation.navigate("Admin")}>
         <FontAwesome name="user-circle-o" size={28} color="#FFF"/>
         </Pressable>
     </View>
     
     </View>
 
-    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Login" screenOptions={{
+    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Admin" screenOptions={{
     headerShown: false,
     swipeEnabled: true, // Oculta o cabeçalho
     // drawerActiveTintColor: 'red', // Cor do texto/ícone quando o item está ativo
@@ -45,7 +45,7 @@ export default function Navbar () {
     // drawerInactiveBackgroundColor: 'red', // Cor de fundo do item inativo
 }}>
         <Drawer.Screen name="Home" component={HomeScreen}/>
-        <Drawer.Screen name="Login" component={LoginScreen}/>
+        <Drawer.Screen name="Admin" component={AdminScreen}/>
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
         <Drawer.Screen name="Contact" component={ContactScreen}/>
     </Drawer.Navigator>
