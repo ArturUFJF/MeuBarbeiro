@@ -1,13 +1,13 @@
 import React from "react";
 import {Image, Text, View, StyleSheet, Pressable} from "react-native";
-import { useNavigation } from "@react-navigation/native";   
+import { useNavigation, NavigationProp} from "@react-navigation/native";   
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
-export default function CustomDrawer(props) {
+export default function CustomDrawer(props:any) {
 
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<any>>();
 
   return <>
     <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>

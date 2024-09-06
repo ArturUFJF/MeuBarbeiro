@@ -2,7 +2,7 @@ import React from "react";
 import {Image, Text, View, StyleSheet, Pressable, Animated} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import { DrawerActions, useNavigation } from "@react-navigation/native";
+import { DrawerActions, useNavigation, NavigationProp} from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawer from "../navbar/sidebar";   
 import AdminScreen from "../admin/admin";
@@ -13,7 +13,7 @@ import ContactScreen from "../contact/contact";
 
 export default function Navbar () {
     const Drawer = createDrawerNavigator();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<any>>();
     
     return <>
     <View style ={styles.body}>
@@ -72,10 +72,10 @@ const styles = StyleSheet.create ({
         
         shadowColor: "#000",
         shadowOffset: {
-	    width: 2,
+	    width: 0,
 	    height: 4,
         },
-        shadowOpacity: 0.4,
+        shadowOpacity: 0.7,
         shadowRadius: 4,
         elevation: 5,        
     },
@@ -90,5 +90,8 @@ const styles = StyleSheet.create ({
 
     button: {
         flexDirection: "row",
+        textShadowColor: '#000000',
+        textShadowOffset: { width: 3, height: 3 },
+        textShadowRadius: 4,
     },
 })
