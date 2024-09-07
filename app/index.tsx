@@ -1,5 +1,4 @@
 import React from "react";
-// import {ScrollView, View, Text, StatusBar, SafeAreaView, StyleSheet} from "react-native";
 import AppLoading from "expo-app-loading";
 import {useFonts, Raleway_600SemiBold, Raleway_700Bold, Raleway_900Black} from "@expo-google-fonts/raleway";
 import {SquadaOne_400Regular} from "@expo-google-fonts/squada-one";
@@ -26,6 +25,7 @@ export default function Index(){
 
 return<>
     <Navbar/>
+
 </>
 
 }

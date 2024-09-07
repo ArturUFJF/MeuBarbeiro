@@ -1,10 +1,14 @@
 import React from "react";
 import {Text, View, StyleSheet, Dimensions, Image, Pressable} from "react-native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 
 export default function product(){
+
+    const navigation = useNavigation<NavigationProp<any>>();
+
 return <>
 
-    <Pressable style={styles.body}>
+    <Pressable style={styles.body} onPress={() => navigation.navigate("IndividualBarberShop")}>
 
     <Image style={styles.image}
     source={require("../../assets/images/BarbeariaMineira.jpg")}    

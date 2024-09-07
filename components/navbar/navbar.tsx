@@ -9,7 +9,7 @@ import AdminScreen from "../admin/admin";
 import ScheduleScreen from "../schedule/schedule";
 import HomeScreen from "../home/home";
 import ContactScreen from "../contact/contact";
-
+import IndividualBarberShopScreen from "../individualbarbershop/individualbarbershop";
 
 export default function Navbar () {
     const Drawer = createDrawerNavigator();
@@ -48,6 +48,7 @@ export default function Navbar () {
         <Drawer.Screen name="Admin" component={AdminScreen}/>
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
         <Drawer.Screen name="Contact" component={ContactScreen}/>
+        <Drawer.Screen name="IndividualBarberShop" component={IndividualBarberShopScreen}/>
     </Drawer.Navigator>
     </>
 }
