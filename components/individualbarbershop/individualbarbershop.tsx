@@ -27,6 +27,17 @@ export default function IndividualBarberShop(){
         <Service/>
         <Service/>
         <Service/>
+
+        <Text style={styles.titleServices}>Vantagens</Text>
+        <Text style={styles.advantagesText}>• Cortes modernos, tendência</Text>
+        <Text style={styles.advantagesText}>• Inclusiva pra todo gênero, cor e idade</Text>
+        <Text style={styles.advantagesText}>• Barbeiros capacitados</Text>
+        <Text style={styles.advantagesText}>• Lavagem de cabelo grátis</Text>
+        <Text style={styles.advantagesText}>• Atendimento de primeira</Text>
+
+        <Text style={styles.titleServices}>Contato</Text>
+        <Text style={styles.advantagesText}>• (32) 99834-0667</Text>
+        <Text style={styles.advantagesTextFinal}>• barbeariamineira@gmail.com</Text>
     </ScrollView>
     </>
 }
@@ -77,11 +88,26 @@ const styles = StyleSheet.create({
     titleServices: {
         fontFamily: "SquadaOne",
         fontSize: 28,
-        marginTop: 16,
+        marginTop: 20,
+        marginBottom: 8,
         marginLeft: "5%",
         textDecorationLine: "underline",
         textDecorationColor: "#A31621",
 
+    },
+
+    advantagesText: {
+        marginBottom: 6,
+        fontFamily: "OswaldRegular",
+        fontSize: 20,
+        marginLeft: "5%",
+    },
+
+    advantagesTextFinal: {
+        marginBottom: 32,
+        fontFamily: "OswaldRegular",
+        fontSize: 20,
+        marginLeft: "5%",
     },
 
     body: {
