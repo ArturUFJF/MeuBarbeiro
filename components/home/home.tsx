@@ -9,9 +9,9 @@ export default function home(){
 
     return <>
 
+        <Search/>
     <ScrollView contentContainerStyle={styles.list}>
         
-        <Search/>
         <Barbershop/>
         <Barbershop/>
         <Barbershop/>

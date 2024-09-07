@@ -32,6 +32,8 @@ searchBar: {
     marginBottom: 24,
     flexDirection: "row",
     gap: 8,
+
+    
 },
 
 input: {

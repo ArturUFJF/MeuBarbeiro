@@ -1,5 +1,7 @@
 import React from "react";
 import {ScrollView, View, Text, Pressable, StyleSheet} from "react-native";
+import Search from "../search";
+import AdminBarbershop from "../lists/adminbarbershop";
 
 export default function AdminScreen(){
     return <>
@@ -7,7 +9,22 @@ export default function AdminScreen(){
     <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Nova Barbearia</Text>
     </Pressable>
+
+    <Text style={styles.title}>Barbearias</Text>
+    
     </View>
+    <Search/>
+
+    <ScrollView style={styles.body}>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+        <AdminBarbershop/>
+    </ScrollView>
     </>
 }
 
@@ -46,5 +63,18 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 25,
         color: "#FCF7F8",
+    },
+
+    title: {
+        fontFamily: "SquadaOne",
+        fontSize: 28,
+        marginLeft: 20,
+        marginTop: 28,
+    },
+
+    body: {
+        paddingTop: 8,
+        paddingBottom: 20,
+        
     },
 })
