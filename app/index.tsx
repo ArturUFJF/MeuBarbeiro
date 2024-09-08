@@ -20,7 +20,7 @@ export default function Index(){
     });
     
     if(!LoadFont){
-    return <AppLoading />
+    return <AppLoading/>;
 }
 
 return<>

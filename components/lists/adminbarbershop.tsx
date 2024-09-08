@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, Pressable } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
 
-export default function Product(){
+export default function Product({ barbershop }){
     return <>
     
     <View style={styles.body}>
@@ -13,8 +13,8 @@ export default function Product(){
     />
 
     <View style={styles.textBody}>
-        <Text style={styles.barberShopText}>Barbearia Mineira</Text>
-        <Text style={styles.dateText}>06/09/2024</Text>
+        <Text style={styles.barberShopText}>{barbershop.name}</Text>
+        <Text style={styles.dateText}>{barbershop.created_at}</Text>
     </View>
 
     <View style={styles.rightCornerBody}>

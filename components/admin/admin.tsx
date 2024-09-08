@@ -1,12 +1,31 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {ScrollView, View, Text, Pressable, StyleSheet} from "react-native";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
 import Search from "../search";
 import AdminBarbershop from "../lists/adminbarbershop";
+import axios from "axios";
 
 export default function AdminScreen(){
+
+    const navigation = useNavigation<NavigationProp<any>>();
+    const [barbershops, setBarbershops] = useState([]); // Estado para armazenar barbearias
+
+    useEffect(() => {
+        const fetchBarbearias = async () => {
+            try {
+                const response = await axios.get("https://treinamentoapi.codejr.com.br/api/artur/barberShop");
+                setBarbershops(response.data); // Supondo que a resposta tenha um array chamado "barberShops"
+                console.log
+            } catch (error) {
+                console.error("Erro ao buscar barbearias:", error);
+            }
+        };
+        fetchBarbearias();
+    }, []);
+
     return <>
     <View style={styles.header}>
-    <Pressable style={styles.button}>
+    <Pressable style={styles.button} onPress={() => navigation.navigate("ModalCriar")}>
         <Text style={styles.buttonText}>Nova Barbearia</Text>
     </Pressable>
 
@@ -16,14 +35,9 @@ export default function AdminScreen(){
     <Search/>
 
     <ScrollView style={styles.body}>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
-        <AdminBarbershop/>
+    {barbershops.map((barbershop, index) => (
+        <AdminBarbershop key={index} barbershop={barbershop} /> 
+                ))}
     </ScrollView>
     </>
 }
