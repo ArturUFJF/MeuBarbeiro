@@ -3,7 +3,7 @@ import { Image, View, Text, StyleSheet, Pressable } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Feather from "react-native-vector-icons/Feather";
 
-export default function Product({ barberShop }){
+export default function Product({ barberShop }:any){
     return <>
     
     <View style={styles.body}>

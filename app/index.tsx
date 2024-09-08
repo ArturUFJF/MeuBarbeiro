@@ -1,5 +1,5 @@
 import React from "react";
-import AppLoading from "expo-app-loading";
+import { Text } from 'react-native';
 import {useFonts, Raleway_600SemiBold, Raleway_700Bold, Raleway_900Black} from "@expo-google-fonts/raleway";
 import {SquadaOne_400Regular} from "@expo-google-fonts/squada-one";
 import {Oswald_300Light, Oswald_400Regular, Oswald_500Medium, Oswald_600SemiBold, Oswald_700Bold} from "@expo-google-fonts/oswald";
@@ -20,7 +20,7 @@ export default function Index(){
     });
     
     if(!LoadFont){
-    return <AppLoading/>;
+    return (<Text>Carregando...</Text>);
 }
 
 return<>
