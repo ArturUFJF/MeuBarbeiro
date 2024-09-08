@@ -3,24 +3,34 @@ import {ScrollView, View, Text, Pressable, StyleSheet} from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import Search from "../search";
 import AdminBarbershop from "../lists/adminbarbershop";
-import axios from "axios";
+// import axios from "axios";
 
 export default function AdminScreen(){
 
     const navigation = useNavigation<NavigationProp<any>>();
-    const [barbershops, setBarbershops] = useState([]); // Estado para armazenar barbearias
+    const [barbershop, setBarbershop] = useState([]); // Estado para armazenar cada item barbearia
 
     useEffect(() => {
-        const fetchBarbearias = async () => {
+        const fetchBarbershop = async (id:number) => {
             try {
-                const response = await axios.get("https://treinamentoapi.codejr.com.br/api/artur/barberShop");
-                setBarbershops(response.data); // Supondo que a resposta tenha um array chamado "barberShops"
-                console.log
+                    const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${id}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                        }
+                    });
+                    const data = await response.json();
+                    console.log(data);
+                    console.log(data.barberShop);
+                    setBarbershop(data.barberShop);
+                
             } catch (error) {
                 console.error("Erro ao buscar barbearias:", error);
             }
         };
-        fetchBarbearias();
+            
+                fetchBarbershop(1);    
     }, []);
 
     return <>
@@ -35,9 +45,7 @@ export default function AdminScreen(){
     <Search/>
 
     <ScrollView style={styles.body}>
-    {barbershops.map((barbershop, index) => (
-        <AdminBarbershop key={index} barbershop={barbershop} /> 
-                ))}
+        <AdminBarbershop barberShop={barbershop} />
     </ScrollView>
     </>
 }
