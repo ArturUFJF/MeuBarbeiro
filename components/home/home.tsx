@@ -49,7 +49,7 @@ export default function home(){
 
     return <>
 
-        <Search/>
+        {/* <Search/> */}
         
     <FlatList contentContainerStyle={styles.list} data={barbershop} // Passa o array de barbearias como dados
             keyExtractor={(item) => item.id.toString()} // Extrai uma chave única de cada item
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     list: {
         display: "flex",
         marginHorizontal: "auto",
+        marginTop: 28,
         justifyContent: "center",
         width: "92%",
         flexWrap: "wrap",

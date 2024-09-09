@@ -1,26 +1,16 @@
 import React from "react";
 import { View, ScrollView, Text, StyleSheet } from "react-native";
-import Product from "../lists/product";
-import NavbarScreen from "../navbar/navbar";
 
 export default function Schedule(){
     
     return <>
     <View style={styles.titleBody}>
-    <Text style={styles.title}>Meus Agendamentos</Text>
+    <Text style={styles.title}>Minha Agenda</Text>
     </View>
     
     <ScrollView style={styles.body}>
 
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
-    <Product/>
+
 
     </ScrollView>
     </>
