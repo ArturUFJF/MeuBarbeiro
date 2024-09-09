@@ -51,7 +51,7 @@ export default function IndividualBarberShop({ route }:any){
     </View>
     
         <Text style={styles.titleServices}>Serviços</Text>
-        <Search/>
+        {/* <Search/> */}
 
         <Service/>
         <Service/>
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         fontFamily: "SquadaOne",
         fontSize: 28,
         marginTop: 20,
-        marginBottom: 8,
+        marginBottom: 16,
         marginLeft: "5%",
         textDecorationLine: "underline",
         textDecorationColor: "#A31621",

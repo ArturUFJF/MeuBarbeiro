@@ -1,76 +1,208 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, Pressable, StyleSheet, Alert, ScrollView } from "react-native";
 import axios from "axios";
 
-export default function ModalPost(){
-    //Declaração de estados
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [advantages, setAdvantages] = useState("");
-    const [contact, setContact] = useState("");
+export default function ModalPost() {
+  // Declaração de estados
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [advantages, setAdvantages] = useState<string[]>([]); // Lista de vantagens
+  const [contact, setContact] = useState("");
+  const [products, setProducts] = useState<{ name: string, price: string }[]>([]); // Lista de produtos
+  const [productName, setProductName] = useState(""); // Produto temporário
+  const [productPrice, setProductPrice] = useState(""); // Preço temporário
+  const [advantageInput, setAdvantageInput] = useState(""); // Input temporário de vantagem
 
-    //POST de dados para a API
-    const submitData = async () => {
-        const barberData = {
-          name: name,
-          descripition: description,
-          advantages: advantages,
-          contact: contact,
-        };
-    
-        try {
-          const response = await axios.post('https://treinamentoapi.codejr.com.br/api/artur/barberShop', barberData, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+  // Adicionar uma vantagem ao pressionar Enter
+  const handleAdvantageSubmit = () => {
+    if (advantageInput.trim()) {
+      setAdvantages([...advantages, `• ${advantageInput.trim()}`]);
+      setAdvantageInput(""); // Limpar o campo após adicionar
+    }
+  };
 
-        console.log(response);  // Verificar resposta completa da API
-        console.log(response.status);  // Verificar status code
-        console.log(response.data);  // Verificar dados retornados
-    
-          if (response.status === 201) {
-            Alert.alert("Sucesso", "Nova barbearia cadastrada!");
-          } else {
-            Alert.alert("Erro", "Não foi possível cadastrar a barbearia.");
-          }
-        } catch (error) {
-          console.error(error);
-          Alert.alert("Erro", "Ocorreu um erro ao cadastrar a barbearia.");
-        }
-      };
+  // Adicionar um produto à lista
+  const handleProductSubmit = () => {
+    if (productName.trim() && productPrice.trim()) {
+      setProducts([...products, { name: productName.trim(), price: productPrice.trim() }]);
+      setProductName(""); // Limpar os campos de produto
+      setProductPrice("");
+    }
+  };
 
+  // POST de dados para a API
+  const submitData = async () => {
+    const barberData = {
+      name: name,
+      descripition: description,
+      advantages: advantages.join("\n"), // Formatando vantagens como string
+      contact: contact,
+      products: products, // Adicionando os produtos
+    };
 
-    return <>
-    <View>
+    try {
+      const response = await axios.post('https://treinamentoapi.codejr.com.br/api/artur/barberShop', barberData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-    <TextInput style={styles.inputTeste} placeholder="Nome" value={name} onChangeText={setName}/>
-    <TextInput style={styles.inputTeste} placeholder="Descrição" value={description} onChangeText={setDescription}/>
-    <TextInput style={styles.inputTeste} placeholder="Vantagens" value={advantages} onChangeText={setAdvantages}/>
-    <TextInput style={styles.inputTeste} placeholder="Contato" value={contact} onChangeText={setContact}/>
+      console.log(response);  // Verificar resposta completa da API
+      console.log(response.status);  // Verificar status code
+      console.log(response.data);  // Verificar dados retornados
 
-    <Pressable style={styles.buttonTeste} onPress={submitData}>
-        <Text>Enviar</Text>
+      if (response.status === 201) {
+        Alert.alert("Sucesso", "Nova barbearia cadastrada!");
+      } else {
+        Alert.alert("Erro", "Não foi possível cadastrar a barbearia.");
+      }
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Erro", "Ocorreu um erro ao cadastrar a barbearia.");
+    }
+  };
+
+  return (
+    <ScrollView style={styles.modalContainer}>
+      <View style={styles.modalContent}>
+        <Text style={styles.modalTitle}>Cadastrar Barbearia</Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Nome da Barbearia"
+          value={name}
+          onChangeText={setName}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Descrição"
+          value={description}
+          onChangeText={setDescription}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Contato"
+          value={contact}
+          onChangeText={setContact}
+        />
+
+        {/* Campo de vantagens */}
+        <TextInput
+          style={styles.input}
+          placeholder="Adicionar Vantagem"
+          value={advantageInput}
+          onChangeText={setAdvantageInput}
+          onSubmitEditing={handleAdvantageSubmit} // Ao pressionar Enter
+        />
+        <Pressable style={styles.addButton} onPress={handleAdvantageSubmit}>
+          <Text style={styles.buttonText}>Adicionar Vantagem</Text>
         </Pressable>
 
-    </View>
+        {/* Exibir lista de vantagens */}
+        {advantages.length > 0 && (
+          <View style={styles.advantagesList}>
+            {advantages.map((adv, index) => (
+              <Text key={index} style={styles.advantageItem}>{adv}</Text>
+            ))}
+          </View>
+        )}
 
-    </>
+        <TextInput
+          style={styles.input}
+          placeholder="Nome do Produto"
+          value={productName}
+          onChangeText={setProductName}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Preço do Produto"
+          value={productPrice}
+          onChangeText={setProductPrice}
+          keyboardType="numeric"
+        />
+        <Pressable style={styles.addButton} onPress={handleProductSubmit}>
+          <Text style={styles.buttonText}>Adicionar Produto</Text>
+        </Pressable>
+
+        {/* Exibir lista de produtos */}
+        {products.length > 0 && (
+          <View style={styles.productList}>
+            {products.map((prod, index) => (
+              <Text key={index} style={styles.productItem}>{prod.name} - R$ {prod.price}</Text>
+            ))}
+          </View>
+        )}
+
+        <Pressable style={styles.submitButton} onPress={submitData}>
+          <Text style={styles.buttonText}>Enviar</Text>
+        </Pressable>
+      </View>
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
-    inputTeste: {
-        alignSelf: "center",
-        fontFamily: "SquadaOne",
-        fontSize: 20,
-        paddingVertical: 40,
-    },
-
-    buttonTeste: {
-        alignSelf: "center",
-        fontFamily: "SquadaOne",
-        fontSize: 20,
-        paddingVertical: 20,
-        backgroundColor: "blue",
-    }
-})
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#f2f2f2',
+  },
+  modalContent: {
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    margin: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
+  },
+  modalTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  input: {
+    height: 50,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    fontSize: 16,
+  },
+  addButton: {
+    backgroundColor: '#4CAF50',
+    padding: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  advantagesList: {
+    marginBottom: 20,
+  },
+  advantageItem: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  productList: {
+    marginBottom: 20,
+  },
+  productItem: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  submitButton: {
+    backgroundColor: '#2196F3',
+    padding: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+});
