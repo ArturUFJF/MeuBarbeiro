@@ -23,7 +23,7 @@ searchBar: {
     alignSelf: "center",
     marginTop: 20,
     width: "90%",
-    height: 36,
+    height: 40,
     padding: 8,
     borderWidth: 2,
     borderColor: "#A31621",
@@ -48,7 +48,7 @@ input: {
 },
 
 icon: {
-    lineHeight: 16,
+    alignSelf: "center",
 }
 
 })

@@ -11,6 +11,7 @@ import HomeScreen from "../home/home";
 import ContactScreen from "../contact/contact";
 import IndividualBarberShopScreen from "../individualbarbershop/individualbarbershop";
 import ModalScreen from "../admin/modalPost";
+import ModalPut from "../admin/modalPut";
 
 export default function Navbar () {
     const Drawer = createDrawerNavigator();
@@ -50,6 +51,7 @@ export default function Navbar () {
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
         <Drawer.Screen name="Contact" component={ContactScreen}/>
         <Drawer.Screen name="ModalCriar" component={ModalScreen}/>
+        <Drawer.Screen name="ModalPut" component={ModalPut}/>
         <Drawer.Screen name="IndividualBarberShop" component={IndividualBarberShopScreen}/>
     </Drawer.Navigator>
     </>

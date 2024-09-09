@@ -1,11 +1,43 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {ScrollView, View, Text, Pressable, StyleSheet, Image, Dimensions} from "react-native";
 import Search from "../search";
 import Service from "../lists/service";
 
-export default function IndividualBarberShop(){
+export default function IndividualBarberShop({ route }:any){
+
+    const { barberShop } = route.params;
+    const [barbershop, setBarbershop] = useState(barberShop); // Estado para armazenar cada item barbearia
+    
+    useEffect(() => {
+        if (!barbershop){
+            fetchBarbershop();
+        }
+    }, []); // O array vazio [] como segundo argumento garante que o fetch seja feito apenas uma vez ao montar o componente
+   
+    const fetchBarbershop = async () => {
+        try {
+                const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${barberShop.id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    }
+                });
+                const data = await response.json();
+    
+                console.log(data);
+                console.log(data.barberShop);
+                setBarbershop(data.barberShop); // Atualiza o estado com todas as barbearias
+            }
+         catch (error) {
+            console.error("Erro ao buscar barbearias:", error);
+        }
+    };
+
+
+
     return <>
-          <Text style={styles.title}>Barbearia Mineira</Text>
+          <Text style={styles.title}>{barberShop.name}</Text>
 
     <ScrollView>
         <Image
@@ -15,7 +47,7 @@ export default function IndividualBarberShop(){
 
 
     <View style={styles.body}>
-        <Text style={styles.description}>Um lugar singular para pessoas plurais! </Text>
+        <Text style={styles.description}>{barbershop.descripition}</Text>
     </View>
     
         <Text style={styles.titleServices}>Serviços</Text>
@@ -29,15 +61,11 @@ export default function IndividualBarberShop(){
         <Service/>
 
         <Text style={styles.titleServices}>Vantagens</Text>
-        <Text style={styles.advantagesText}>• Cortes modernos, tendência</Text>
-        <Text style={styles.advantagesText}>• Inclusiva pra todo gênero, cor e idade</Text>
-        <Text style={styles.advantagesText}>• Barbeiros capacitados</Text>
-        <Text style={styles.advantagesText}>• Lavagem de cabelo grátis</Text>
-        <Text style={styles.advantagesText}>• Atendimento de primeira</Text>
+        <Text style={styles.advantagesText}>{barbershop.advantages}</Text>
+    
 
         <Text style={styles.titleServices}>Contato</Text>
-        <Text style={styles.advantagesText}>• (32) 99834-0667</Text>
-        <Text style={styles.advantagesTextFinal}>• barbeariamineira@gmail.com</Text>
+        <Text style={styles.advantagesTextFinal}>{barbershop.contact}</Text>
     </ScrollView>
     </>
 }
