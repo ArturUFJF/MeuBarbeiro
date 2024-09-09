@@ -8,9 +8,6 @@ export default function ModalPost() {
   const [description, setDescription] = useState("");
   const [advantages, setAdvantages] = useState<string[]>([]); // Lista de vantagens
   const [contact, setContact] = useState("");
-  const [products, setProducts] = useState<{ name: string, price: string }[]>([]); // Lista de produtos
-  const [productName, setProductName] = useState(""); // Produto temporário
-  const [productPrice, setProductPrice] = useState(""); // Preço temporário
   const [advantageInput, setAdvantageInput] = useState(""); // Input temporário de vantagem
 
   // Adicionar uma vantagem ao pressionar Enter
@@ -21,15 +18,6 @@ export default function ModalPost() {
     }
   };
 
-  // Adicionar um produto à lista
-  const handleProductSubmit = () => {
-    if (productName.trim() && productPrice.trim()) {
-      setProducts([...products, { name: productName.trim(), price: productPrice.trim() }]);
-      setProductName(""); // Limpar os campos de produto
-      setProductPrice("");
-    }
-  };
-
   // POST de dados para a API
   const submitData = async () => {
     const barberData = {
@@ -37,7 +25,6 @@ export default function ModalPost() {
       descripition: description,
       advantages: advantages.join("\n"), // Formatando vantagens como string
       contact: contact,
-      products: products, // Adicionando os produtos
     };
 
     try {
@@ -52,7 +39,7 @@ export default function ModalPost() {
       console.log(response.data);  // Verificar dados retornados
 
       if (response.status === 201) {
-        Alert.alert("Sucesso", "Nova barbearia cadastrada!");
+        Alert.alert("Sucesso", "Nova barbearia cadastrada com sucesso!");
       } else {
         Alert.alert("Erro", "Não foi possível cadastrar a barbearia.");
       }
@@ -105,32 +92,6 @@ export default function ModalPost() {
           <View style={styles.advantagesList}>
             {advantages.map((adv, index) => (
               <Text key={index} style={styles.advantageItem}>{adv}</Text>
-            ))}
-          </View>
-        )}
-
-        <TextInput
-          style={styles.input}
-          placeholder="Nome do Produto"
-          value={productName}
-          onChangeText={setProductName}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Preço do Produto"
-          value={productPrice}
-          onChangeText={setProductPrice}
-          keyboardType="numeric"
-        />
-        <Pressable style={styles.addButton} onPress={handleProductSubmit}>
-          <Text style={styles.buttonText}>Adicionar Produto</Text>
-        </Pressable>
-
-        {/* Exibir lista de produtos */}
-        {products.length > 0 && (
-          <View style={styles.productList}>
-            {products.map((prod, index) => (
-              <Text key={index} style={styles.productItem}>{prod.name} - R$ {prod.price}</Text>
             ))}
           </View>
         )}
@@ -189,13 +150,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   advantageItem: {
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  productList: {
-    marginBottom: 20,
-  },
-  productItem: {
     fontSize: 16,
     marginBottom: 5,
   },
