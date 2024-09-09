@@ -47,7 +47,7 @@ export default function IndividualBarberShop({ route }:any){
 
 
     <View style={styles.body}>
-        <Text style={styles.description}>{barbershop.descripition}</Text>
+        <Text style={styles.description}>{barberShop.descripition}</Text>
     </View>
     
         <Text style={styles.titleServices}>Serviços</Text>
@@ -61,11 +61,11 @@ export default function IndividualBarberShop({ route }:any){
         <Service/>
 
         <Text style={styles.titleServices}>Vantagens</Text>
-        <Text style={styles.advantagesText}>{barbershop.advantages}</Text>
+        <Text style={styles.advantagesText}>{barberShop.advantages}</Text>
     
 
         <Text style={styles.titleServices}>Contato</Text>
-        <Text style={styles.advantagesTextFinal}>{barbershop.contact}</Text>
+        <Text style={styles.advantagesTextFinal}>{barberShop.contact}</Text>
     </ScrollView>
     </>
 }
