@@ -18,7 +18,11 @@ export const fetchBarbershop = createAsyncThunk(
       const data = await response.json();
 
       if (data && data.barberShop) {
-        newBarbershops.push(data.barberShop);
+        const barbershopWithProducts = {
+          ...data.barberShop,
+          products: data.products || [], // Se houver produtos, adicione-os
+        };
+        newBarbershops.push(barbershopWithProducts);
       }
 
       if (data.status !== 200) {
@@ -26,7 +30,7 @@ export const fetchBarbershop = createAsyncThunk(
       }
       id++;
     }
-    return newBarbershops;
+    return newBarbershops; // Retorna as barbearias para o Redux
   }
 );
 
@@ -45,7 +49,7 @@ const barbershopSlice = createSlice({
       })
       .addCase(fetchBarbershop.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.barbershops = action.payload;
+        state.barbershops = action.payload; // Atualiza o estado com as barbearias recebidas
       })
       .addCase(fetchBarbershop.rejected, (state, action) => {
         state.status = 'failed';
