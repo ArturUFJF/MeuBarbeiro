@@ -80,5 +80,5 @@ const styles = StyleSheet.create({
         rowGap: 16,
         columnGap: 16,
         paddingBottom: 60,
-    }
+    },
 })

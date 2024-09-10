@@ -9,7 +9,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
 
   const touchLogin = () => {
-    if (email === "" && password === "") {
+    if (email === "admin@teste.com" && password === "123456") {
       login(); 
     } else {
       Alert.alert("Erro", "Credenciais incorretas!"); 
