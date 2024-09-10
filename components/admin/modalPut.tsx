@@ -142,19 +142,24 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalTitle: {
-    fontSize: 24,
+    fontFamily: "SquadaOne",
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
+    textDecorationLine: "underline",
+    textDecorationColor: "#A31621",
   },
   input: {
     height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
+    borderWidth: 2,
+    borderColor: "#4E8098",
+    backgroundColor: "#CED3DC",
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 20,
     fontSize: 16,
+    
   },
   addButton: {
     backgroundColor: '#4CAF50',
@@ -162,9 +167,20 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 4,
   },
   buttonText: {
-    color: '#fff',
+    fontFamily: "RalewayBlack",
+    textAlign: "center",
+    color: "#FCF7F8",
     fontSize: 16,
   },
   advantagesList: {
@@ -175,9 +191,18 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   submitButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#A31621',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 4,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });

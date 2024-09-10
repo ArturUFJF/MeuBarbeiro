@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalText: {
-    fontSize: 18,
+    fontFamily: "SquadaOne",
+    fontSize: 32,
     marginBottom: 20,
   },
   modalButton: {
@@ -151,6 +152,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   modalButtonText: {
+    fontFamily: "RalewayBlack",
     color: "#FCF7F8",
     fontSize: 18,
   },

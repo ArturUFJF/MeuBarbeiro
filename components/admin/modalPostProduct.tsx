@@ -25,7 +25,7 @@ export default function ModalPostProduct() {
 
       console.log(response);  // Verificar resposta completa da API
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         Alert.alert("Sucesso", "Produto cadastrado com sucesso!");
       } else {
         Alert.alert("Erro", "Não foi possível cadastrar o produto.");
@@ -92,15 +92,19 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   modalTitle: {
-    fontSize: 24,
+    fontFamily: "SquadaOne",
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 20,
+    textDecorationLine: "underline",
+    textDecorationColor: "#A31621",
   },
   input: {
     height: 50,
-    borderColor: '#ccc',
-    borderWidth: 1,
+    borderWidth: 2,
+    borderColor: "#4E8098",
+    backgroundColor: "#CED3DC",
     borderRadius: 8,
     paddingHorizontal: 10,
     marginBottom: 20,
@@ -114,13 +118,24 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonText: {
-    color: '#fff',
+    fontFamily: "RalewayBlack",
+    textAlign: "center",
+    color: "#FCF7F8",
     fontSize: 16,
   },
   submitButton: {
-    backgroundColor: '#2196F3',
+    backgroundColor: '#A31621',
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 4,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
