@@ -1,84 +1,64 @@
-import React, {useState, useEffect} from "react";
-import {View, StyleSheet, FlatList, Text} from "react-native";
+import React, { useEffect } from 'react';
+import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBarbershop } from '../../app/redux/slices/barbershopSlice'; // Importa a ação
 import Barbershop from "../lists/barbershop";
 
+export default function Home() {
+  const dispatch = useDispatch();
+  const barbershop = useSelector((state) => state.barbershop.barbershops);
+  const status = useSelector((state) => state.barbershop.status);
 
-export default function Home(){
+  // Executa o fetchBarbershop de início
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchBarbershop());
+    }
+  }, [status, dispatch]);
 
-    const [barbershop, setBarbershop] = useState([]); // Estado para armazenar cada item barbearia
+  useEffect(() => {
+    const interval = setInterval(() => {
+      dispatch(fetchBarbershop()); 
+    }, 15000); // atualiza de 15 em 15 segundos
+  
+    return () => clearInterval(interval); 
+  }, [dispatch]);
 
-    const fetchBarbershop = async () => {
-        try {
-            const newBarbershops = [];
-            let id = 26;
+  return <>
+      <Text style={styles.title}>Barbearias</Text>
 
-            while (id < 1000) {
-                const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${id}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    }
-                });
-                const data = await response.json();
+      {status === 'loading' && <Text>Carregando...</Text>}
+      {status === 'failed' && <Text>Erro ao carregar dados</Text>}
 
-                if (data && data.barberShop) {
-                    // Adiciona os produtos ao objeto da barbearia
-                    const barbershopWithProducts = {
-                        ...data.barberShop,
-                        products: data.products || [] // Se houver produtos, adicione-os
-                    };
-                    newBarbershops.push(barbershopWithProducts); // Adiciona a barbearia com produtos
-                }
-
-                if (data.status != 200) {
-                    break;
-                }
-                id++;
-            }
-            setBarbershop(newBarbershops); // Atualiza o estado com todas as barbearias
-        } catch (error) {
-            console.error("Erro ao buscar barbearias:", error);
-        }
-    };
-
-    useEffect(() => {
-        fetchBarbershop();
-    }, []);
-
-    return <>
-
-    <Text style={styles.title}>Barbearias</Text>
-        
-    <FlatList contentContainerStyle={styles.list} data={barbershop}
-            keyExtractor={(item) => item.id.toString()} 
-            renderItem={({ item }) => <Barbershop barberShop={item} />} // Renderiza cada item
-            />
-
+      <FlatList
+        contentContainerStyle={styles.list}
+        data={barbershop}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Barbershop barberShop={item} />} // Renderiza cada item
+      />
     </>
 }
 
 const styles = StyleSheet.create({
-    title: {
-        fontFamily: "SquadaOne",
-        fontSize: 32,
-        marginBottom: 8,
-        alignSelf: 'center',
-        marginTop: "4%",
-        textDecorationLine: "underline",
-        textDecorationColor: "#A31621",    
-    },
-
-    list: {
-        display: "flex",
-        marginHorizontal: "auto",
-        marginTop: 28,
-        justifyContent: "center",
-        width: "92%",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        rowGap: 16,
-        columnGap: 16,
-        paddingBottom: 60,
-    },
-})
+  title: {
+    fontFamily: "SquadaOne",
+    fontSize: 32,
+    marginBottom: 8,
+    alignSelf: 'center',
+    marginTop: "4%",
+    textDecorationLine: "underline",
+    textDecorationColor: "#A31621",
+  },
+  list: {
+    display: "flex",
+    marginHorizontal: "auto",
+    marginTop: 28,
+    justifyContent: "center",
+    width: "92%",
+    flexWrap: "wrap",
+    flexDirection: "row",
+    rowGap: 16,
+    columnGap: 16,
+    paddingBottom: 60,
+  },
+});

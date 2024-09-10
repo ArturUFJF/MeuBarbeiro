@@ -1,5 +1,7 @@
 import React from "react";
 import { AuthProvider, useAuth } from "./context/AuthContext"; 
+import { Provider } from 'react-redux';
+import store from '../app/redux/store'; 
 import { Text } from "react-native";
 import { useFonts, Raleway_600SemiBold, Raleway_700Bold, Raleway_900Black } from "@expo-google-fonts/raleway";
 import { SquadaOne_400Regular } from "@expo-google-fonts/squada-one";
@@ -26,9 +28,13 @@ export default function Index() {
   }
 
   return (
+    <Provider store={store}>
+
     <AuthProvider> 
       <Main />
     </AuthProvider>
+    
+    </Provider>
   );
 }
 
