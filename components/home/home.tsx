@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {View, StyleSheet, FlatList} from "react-native";
+import {View, StyleSheet, FlatList, Text} from "react-native";
 import Barbershop from "../lists/barbershop";
 
 
@@ -47,6 +47,8 @@ export default function home(){
     }, []);
 
     return <>
+
+    <Text style={styles.title}>Barbearias</Text>
         
     <FlatList contentContainerStyle={styles.list} data={barbershop}
             keyExtractor={(item) => item.id.toString()} 
@@ -57,6 +59,15 @@ export default function home(){
 }
 
 const styles = StyleSheet.create({
+    title: {
+        fontFamily: "SquadaOne",
+        fontSize: 32,
+        marginBottom: 8,
+        alignSelf: 'center',
+        marginTop: "4%",
+        textDecorationLine: "underline",
+        textDecorationColor: "#A31621",    
+    },
 
     list: {
         display: "flex",

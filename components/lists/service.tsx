@@ -22,7 +22,9 @@ export default function Service({ product }:any){
 
 
     <View style={styles.rightCornerBody}>
-            <Text style={styles.dateText}>{product.id}</Text>
+        <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Agendar</Text>
+        </Pressable>
     </View>
 
 
@@ -77,6 +79,23 @@ const styles = StyleSheet.create({
         paddingRight: 4,
         gap: 8,
         justifyContent: "space-around",
+    },
+
+    button: {
+        width: 80,
+        height: 44,
+        marginRight: 10,
+        borderRadius: 12,
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#A31621",
+    },
+
+    buttonText: {
+        fontFamily: "RalewayBlack",
+        fontSize: 16,
+        color: "#FCF7F8",
     },
 
     image: {
