@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../../app/context/AuthContext";
 import {Image, Text, View, StyleSheet, Pressable} from "react-native";
 import { useNavigation, NavigationProp} from "@react-navigation/native";   
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
@@ -8,6 +9,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 export default function CustomDrawer(props:any) {
 
     const navigation = useNavigation<NavigationProp<any>>();
+    const { logout } = useAuth(); // Obtendo a função de logout
 
   return <>
     <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
@@ -63,7 +65,7 @@ export default function CustomDrawer(props:any) {
 
 
       <View style={styles.footer}>
-        <Pressable style={styles.logoutButton} onPress={() => console.log('Logout em produção!')}>
+        <Pressable style={styles.logoutButton} onPress={logout}>
           <FontAwesome name="sign-out" size={28} color="#000" />
           <Text style={styles.logoutText}>Logout</Text>
         </Pressable>

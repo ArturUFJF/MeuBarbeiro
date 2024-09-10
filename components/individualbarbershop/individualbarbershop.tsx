@@ -6,9 +6,6 @@ export default function IndividualBarberShop({ route }:any){
 
     const { barberShop } = route.params;
     const [products, setProducts] = useState(barberShop.products || []);
-    
-    console.log("Produtos: ");
-    console.log(products);
 
     return <>
           <Text style={styles.title}>{barberShop.name}</Text>

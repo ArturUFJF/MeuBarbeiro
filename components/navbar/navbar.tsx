@@ -41,11 +41,7 @@ export default function Navbar () {
 
     <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Home" screenOptions={{
     headerShown: false,
-    swipeEnabled: true, // Oculta o cabeçalho
-    // drawerActiveTintColor: 'red', // Cor do texto/ícone quando o item está ativo
-    // drawerInactiveTintColor: 'red', // Cor do texto/ícone quando o item está inativo
-    // drawerActiveBackgroundColor: 'red', // Cor de fundo do item ativo
-    // drawerInactiveBackgroundColor: 'red', // Cor de fundo do item inativo
+    swipeEnabled: true, 
 }}>
         <Drawer.Screen name="Home" component={HomeScreen}/>
         <Drawer.Screen name="Admin" component={AdminScreen}/>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ScrollView, View, Text, Pressable, StyleSheet, FlatList} from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import AdminBarbershop from "../lists/adminbarbershop";
+import AdminProducts from "../lists/adminproducts";
 
 
 export default function AdminScreen(){
@@ -67,23 +68,12 @@ export default function AdminScreen(){
     
     <ScrollView style={styles.body}>
 
-        <FlatList data={barbershop} // Passa o array de barbearias como dados
-            keyExtractor={(item) => item.id.toString()} // Extrai uma chave única de cada item
-            renderItem={({ item }) => <AdminBarbershop barberShop={item} />} // Renderiza cada item usando o componente AdminBarbershop e passa a barbearia como prop
+        <FlatList data={barbershop}
+            keyExtractor={(item) => item.id.toString()} 
+            renderItem={({ item }) => <AdminBarbershop barberShop={item} />} // Renderiza cada item
             />
 
     </ScrollView>
-
-    <Text style={styles.title}>Produtos</Text>
-    
-    <ScrollView style={styles.body}>
-        <FlatList data={barbershop} // Passa o array de barbearias como dados
-            keyExtractor={(item) => item.id.toString()} // Extrai uma chave única de cada item
-            renderItem={({ item }) => <AdminBarbershop barberShop={item} />} // Renderiza cada item usando o componente AdminBarbershop e passa a barbearia como prop
-            />
-
-    </ScrollView>
-
     </>
 }
 
@@ -95,6 +85,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         paddingBottom: 8,
         borderBottomWidth: 1,
+        backgroundColor: "#FFFFFF",
     },
 
     buttonBarbershop: {

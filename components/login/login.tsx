@@ -1,61 +1,59 @@
-import React from "react";
-import {ScrollView, View, Text, StyleSheet, SafeAreaView, TextInput, Pressable} from "react-native";
+import React, {useState} from "react";
+import { ScrollView, View, Text, StyleSheet, SafeAreaView, TextInput, Pressable, Alert } from "react-native";
+import { useAuth } from "../../app/context/AuthContext"; // Importando o hook de autenticação
 
-export default function login(){
-    return <>
+export default function LoginScreen() {
+  const { login } = useAuth(); 
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const touchLogin = () => {
+    if (email === "admin@teste.com" && password === "123456") {
+      login(); 
+    } else {
+      Alert.alert("Erro", "Credenciais incorretas!"); 
+    }
+  };
+
+  return (
     <ScrollView>
-
-    <SafeAreaView style={styles.body}>
+      <SafeAreaView style={styles.body}>
         <Text style={styles.welcome}>Bem-vindo(a)!</Text>
-    
-    <View style={styles.loginView}>
-        
-        <Text style={styles.fieldName}> Email</Text>
-        <TextInput maxLength={70} style={styles.field}/>
-        <Text style={styles.fieldName}> Senha</Text>
-        <TextInput maxLength={16} secureTextEntry style={styles.field}/>
 
-        <Pressable style={styles.button}>
-            {
-                // adicionar simulação de validação depois
-            }
+        <View style={styles.loginView}>
+          <Text style={styles.fieldName}>Email</Text>
+          <TextInput maxLength={70} style={styles.field} value={email} onChangeText={setEmail} keyboardType="email-address" />
+          <Text style={styles.fieldName}>Senha</Text>
+          <TextInput maxLength={16} secureTextEntry style={styles.field} value={password} onChangeText={setPassword}/>
+
+          <Pressable style={styles.button} onPress={() => touchLogin()}> {/* Simula o login */}
             <Text style={styles.buttonText}>Entrar</Text>
-        </Pressable>
-
-    </View>
-    
-    </SafeAreaView>
+          </Pressable>
+        </View>
+      </SafeAreaView>
     </ScrollView>
-     
-    </>
+  );
 }
 
-
 const styles = StyleSheet.create({
-
     body: {
-      alignItems: "center",  
+        alignItems: "center",
     },
-
     welcome: {
         paddingTop: 28,
         fontFamily: "SquadaOne",
         fontSize: 48,
     },
-
     loginView: {
         marginTop: "10%",
         width: "80%",
     },
-
     fieldName: {
         fontFamily: "OswaldSemiBold",
         fontSize: 24,
         paddingBottom: 4,
-
     },
-
     field: {
         alignSelf: "center",
         width: "100%",
@@ -67,7 +65,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginBottom: 24,
     },
-
     button: {
         width: "100%",
         marginTop: 28,
@@ -76,22 +73,19 @@ const styles = StyleSheet.create({
         backgroundColor: "#A31621",
         borderRadius: 16,
         justifyContent: "center",
-        
         shadowColor: "#000",
         shadowOffset: {
-	    width: 2,
-	    height: 4,
+            width: 2,
+            height: 4,
         },
         shadowOpacity: 0.4,
         shadowRadius: 4,
-        elevation: 5, 
+        elevation: 5,
     },
-
     buttonText: {
         fontFamily: "RalewayBlack",
         textAlign: "center",
         color: "#FCF7F8",
         fontSize: 26,
-    }
-
-})
+    },
+});
