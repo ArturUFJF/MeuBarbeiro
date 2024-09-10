@@ -4,12 +4,12 @@ import { View, ScrollView, Text, StyleSheet } from "react-native";
 export default function Schedule() {
   const appointments = [
     {
-      time: "09:00 AM",
+      time: "09:00h",
       barbershop: "Barbearia Mineira",
       service: "Corte",
     },
     {
-      time: "10:30 AM",
+      time: "10:30h",
       barbershop: "Barbearia Interessante",
       service: "Barba",
     }
