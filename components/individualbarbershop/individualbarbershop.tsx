@@ -5,7 +5,15 @@ import Service from "../lists/service";
 export default function IndividualBarberShop({ route }:any){
 
     const { barberShop } = route.params;
-    const [products, setProducts] = useState(barberShop.products || []);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        // Filtrar os produtos que pertencem à barbearia específica
+        const filteredProducts = barberShop.products.filter(
+          (product: any) => product.barber_shop_id === barberShop.id
+        );
+        setProducts(filteredProducts);
+      }, [barberShop]);
 
     return <>
           <Text style={styles.title}>{barberShop.name}</Text>
