@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchBarbershop()); 
-    }, 15000); // atualiza de 15 em 15 segundos
+    }, 25000); // atualiza de 25 em 25 segundos
   
     return () => clearInterval(interval); 
   }, [dispatch]);

@@ -7,11 +7,13 @@ export default function Schedule() {
       time: "09:00h",
       barbershop: "Barbearia Mineira",
       service: "Corte",
+      price: "R$30,00",
     },
     {
       time: "10:30h",
       barbershop: "Barbearia Interessante",
       service: "Barba",
+      price: "R$40,00",
     }
   ];
 
@@ -25,7 +27,7 @@ export default function Schedule() {
           <View key={index} style={styles.appointment}>
             <Text style={styles.time}>{appointment.time}</Text>
             <Text style={styles.client}>{appointment.barbershop}</Text>
-            <Text style={styles.service}>{appointment.service}</Text>
+            <Text style={styles.service}>{appointment.service} - {appointment.price}</Text>
           </View>
         ))}
       </ScrollView>

@@ -43,8 +43,6 @@ export default function Navbar () {
         <Drawer.Screen name="Admin" component={AdminScreen}/>
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
         <Drawer.Screen name="Contact" component={ContactScreen}/>
-        <Drawer.Screen name="ModalPostBarbershop" component={ModalPostBarbershop}/>
-        <Drawer.Screen name="ModalPostProduct" component={ModalPostProduct}/>
         <Drawer.Screen name="ModalPut" component={ModalPut}/>
         <Drawer.Screen name="IndividualBarberShop" component={IndividualBarberShopScreen}/>
         

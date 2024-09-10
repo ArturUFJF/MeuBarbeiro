@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Pressable, StyleSheet, Alert, ScrollView } from "react-native";
+import { View, Text, TextInput, Pressable, StyleSheet, Alert, ScrollView, Modal } from "react-native";
 import axios from "axios";
 
-export default function ModalPostProduct() {
+export default function ModalPostProduct( {visible, onClose} ) {
   // Declaração de estados
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState(""); // Preço do produto
@@ -27,6 +27,7 @@ export default function ModalPostProduct() {
 
       if (response.status === 200) {
         Alert.alert("Sucesso", "Produto cadastrado com sucesso!");
+        onClose(); // Fechar o modal após o sucesso
       } else {
         Alert.alert("Erro", "Não foi possível cadastrar o produto.");
       }
@@ -37,9 +38,15 @@ export default function ModalPostProduct() {
   };
 
   return <>
+    <Modal
+      visible={visible}
+      animationType="slide"
+      transparent={true}
+      onRequestClose={onClose}
+    >
 
-    <ScrollView style={styles.modalContainer}>
-      <View style={styles.modalContent}>
+    <View style={styles.modalContainer}>
+      <ScrollView style={styles.modalContent}>
         <Text style={styles.modalTitle}>Cadastrar Produto</Text>
 
         <TextInput
@@ -48,14 +55,14 @@ export default function ModalPostProduct() {
           keyboardType="numeric"
           value={id}
           onChangeText={setId}
-        />
+          />
 
         <TextInput
           style={styles.input}
           placeholder="Nome do Produto"
           value={productName}
           onChangeText={setProductName}
-        />
+          />
 
 
         <TextInput
@@ -64,23 +71,32 @@ export default function ModalPostProduct() {
           keyboardType="numeric"
           value={price}
           onChangeText={setPrice}
-        />
+          />
 
         <Pressable style={styles.submitButton} onPress={submitData}>
           <Text style={styles.buttonText}>Enviar</Text>
         </Pressable>
-      </View>
-    </ScrollView>
 
+        <Pressable style={styles.closeButton} onPress={onClose}>
+            <Text style={styles.buttonText}>Fechar</Text>
+          </Pressable>
+      </ScrollView>
+    </View>
+</Modal>
   </>
 }
 
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    backgroundColor: '#f2f2f2',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
+
   modalContent: {
+    width: "90%",
+    maxHeight: "70%",
     padding: 20,
     backgroundColor: '#fff',
     borderRadius: 12,
@@ -137,5 +153,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 4,
     elevation: 5,
+  },
+
+  closeButton:{
+    backgroundColor: "#000000",
+    marginTop: 28,
+    padding: 10,
+    borderRadius: 8,
+    alignItems: "center",
   },
 });

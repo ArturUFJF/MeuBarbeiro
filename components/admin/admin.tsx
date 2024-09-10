@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
-import { ScrollView, View, Text, Pressable, StyleSheet, FlatList, SafeAreaView } from "react-native";
-import { useNavigation, NavigationProp } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView, View, Text, Pressable, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBarbershop } from '../../app/redux/slices/barbershopSlice'; 
 import AdminBarbershop from "../lists/adminbarbershop";
+import ModalPostBarbershop from "../admin/modalPostBarbershop";
+import ModalPostProduct from "../admin/modalPostProduct";
 
 export default function AdminScreen() {
-  const navigation = useNavigation<NavigationProp<any>>();
   const dispatch = useDispatch();
   const barbershop = useSelector((state) => state.barbershop.barbershops);
   const status = useSelector((state) => state.barbershop.status);
   
-  // Busca barbearias de começo
+  // Estados para controlar a visibilidade dos modais
+  const [modalPostVisible, setModalPostVisible] = useState(false);
+  const [modalPostProductVisible, setModalPostProductVisible] = useState(false);
+
+  // Busca barbearias no início
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchBarbershop());
@@ -22,56 +26,60 @@ export default function AdminScreen() {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchBarbershop()); 
-    }, 15000); // atualizações de 15 em 15 segundos
+    }, 25000); // atualizações a cada 25 segundos
 
     return () => clearInterval(interval); 
   }, [dispatch]);
 
   return (
     <SafeAreaView style={styles.container}>
-
       <View style={styles.header}>
         <View style={styles.buttonBody}>
           <Pressable
             style={styles.buttonBarbershop}
-            onPress={() => navigation.navigate("ModalPostBarbershop")}
-            >
+            onPress={() => setModalPostVisible(true)} // Abre o modal ao pressionar o botão
+          >
             <Text style={styles.buttonText}>Nova Barbearia</Text>
           </Pressable>
 
           <Pressable
             style={styles.buttonProduct}
-            onPress={() => navigation.navigate("ModalPostProduct")}
-            >
+            onPress={() => setModalPostProductVisible(true)}
+          >
             <Text style={styles.buttonText}>Novo Produto</Text>
           </Pressable>
         </View>
       </View>
 
-    
       <Text style={styles.title}>Barbearias</Text>
 
-     
-        {status === 'loading' && <Text>Carregando...</Text>}
-        {status === 'failed' && <Text>Erro ao carregar barbearias</Text>}
+      {status === 'loading' && <Text>Carregando...</Text>}
+      {status === 'failed' && <Text>Erro ao carregar barbearias</Text>}
 
-        <FlatList
-          contentContainerStyle={styles.body}
-          data={barbershop}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => <AdminBarbershop barberShop={item} />}
-        />
-      
-          </SafeAreaView>
+      <FlatList
+        contentContainerStyle={styles.body}
+        data={barbershop}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <AdminBarbershop barberShop={item} />}
+      />
 
+      <ModalPostBarbershop
+        visible={modalPostVisible}
+        onClose={() => setModalPostVisible(false)} // Fecha o modal
+      />
+
+      <ModalPostProduct
+        visible={modalPostProductVisible}
+        onClose={() => setModalPostProductVisible(false)} // Fecha o modal
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
   },
-
   header: {
     flexDirection: "column",
     width: "100%",

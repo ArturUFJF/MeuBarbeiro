@@ -5,7 +5,7 @@ export const fetchBarbershop = createAsyncThunk(
   'barbershop/fetchBarbershop',
   async () => {
     const newBarbershops = [];
-    let id = 26;
+    let id = 35;
 
     while (id < 1000) {
       const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${id}`, {
@@ -25,7 +25,7 @@ export const fetchBarbershop = createAsyncThunk(
         newBarbershops.push(barbershopWithProducts);
       }
 
-      if (data.status !== 200 && id !== 29) {
+      if (data.status !== 200) {
         break;
       }
       id++;

@@ -39,6 +39,11 @@ export default function ModalPut({ route }: any) {
     }
   };
 
+  const nullAdvantage = () => {
+      setAdvantages([]);
+      setAdvantageInput("");
+  };
+
   // Função para enviar a edição para a API
   const submitData = async () => {
     const barberData = {
@@ -106,6 +111,9 @@ export default function ModalPut({ route }: any) {
         />
         <Pressable style={styles.addButton} onPress={handleAdvantageSubmit}>
           <Text style={styles.buttonText}>Adicionar Vantagem</Text>
+        </Pressable>
+        <Pressable style={styles.resetButton} onPress={nullAdvantage}>
+          <Text style={styles.buttonText}>Resetar Vantagens</Text>
         </Pressable>
 
         {/* Exibir lista de vantagens */}
@@ -177,6 +185,24 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
     elevation: 4,
   },
+
+  resetButton: {
+    backgroundColor: '#90C2E7',
+    padding: 10,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 10,
+
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    elevation: 4,
+  },
+
   buttonText: {
     fontFamily: "RalewayBlack",
     textAlign: "center",
@@ -195,6 +221,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 8,
     alignItems: 'center',
+    marginTop: 20,
 
     shadowColor: "#000",
     shadowOffset: {
