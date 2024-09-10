@@ -15,8 +15,7 @@ export default function Schedule() {
     }
   ];
 
-  return (
-    <>
+  return <>
       <View style={styles.titleBody}>
         <Text style={styles.title}>Minha Agenda</Text>
       </View>
@@ -31,7 +30,6 @@ export default function Schedule() {
         ))}
       </ScrollView>
     </>
-  );
 }
 
 const styles = StyleSheet.create({

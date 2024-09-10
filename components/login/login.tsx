@@ -28,7 +28,7 @@ export default function LoginScreen() {
           <Text style={styles.fieldName}>Senha</Text>
           <TextInput maxLength={16} secureTextEntry style={styles.field} value={password} onChangeText={setPassword}/>
 
-          <Pressable style={styles.button} onPress={() => touchLogin()}> {/* Simula o login */}
+          <Pressable style={styles.button} onPress={() => touchLogin()}>
             <Text style={styles.buttonText}>Entrar</Text>
           </Pressable>
         </View>
