@@ -25,7 +25,7 @@ export const fetchBarbershop = createAsyncThunk(
         newBarbershops.push(barbershopWithProducts);
       }
 
-      if (data.status !== 200) {
+      if (data.status !== 200 && id !== 29) {
         break;
       }
       id++;
