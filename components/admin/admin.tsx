@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {ScrollView, View, Text, Pressable, StyleSheet, FlatList} from "react-native";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import AdminBarbershop from "../lists/adminbarbershop";
-import AdminProducts from "../lists/adminproducts";
 
 
 export default function AdminScreen(){

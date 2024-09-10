@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {View, StyleSheet, FlatList} from "react-native";
 import Barbershop from "../lists/barbershop";
-import Search from "../search";
-import Navbar from "../navbar/navbar";
-import { ScrollView } from "react-native-gesture-handler";
+
 
 export default function home(){
 

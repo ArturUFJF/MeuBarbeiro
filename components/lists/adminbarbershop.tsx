@@ -47,10 +47,6 @@ export default function Product({ barberShop }:any){
     </View>
 
     <View style={styles.rightCornerBody}>
-        <Pressable style={styles.eyeIcon}>
-            <Feather name="eye" size={20} color="#FFF"/>
-        </Pressable>
-
         <Pressable style={styles.editIcon} onPress={() => navigation.navigate("ModalPut", {id: barberShop.id})}>
             <Feather name="edit" size={20} color="#FFF"/>
         </Pressable>
@@ -127,16 +123,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#90C2E7",
-    },
-
-    eyeIcon: {
-        width: 30,
-        height: 30,
-        borderRadius: 12,
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#272D2D",
     },
 
     barberShopText: {

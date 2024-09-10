@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { ScrollView, View, Text, StyleSheet, SafeAreaView, TextInput, Pressable, Alert } from "react-native";
-import { useAuth } from "../../app/context/AuthContext"; // Importando o hook de autenticação
+import { useAuth } from "../../app/context/AuthContext"; 
 
 export default function LoginScreen() {
   const { login } = useAuth(); 
@@ -16,10 +16,11 @@ export default function LoginScreen() {
     }
   };
 
-  return (
-    <ScrollView>
+  return <>
+    <ScrollView contentContainerStyle={styles.scroll}>
       <SafeAreaView style={styles.body}>
         <Text style={styles.welcome}>Bem-vindo(a)!</Text>
+
 
         <View style={styles.loginView}>
           <Text style={styles.fieldName}>Email</Text>
@@ -33,20 +34,25 @@ export default function LoginScreen() {
         </View>
       </SafeAreaView>
     </ScrollView>
-  );
+  </>
 }
 
 const styles = StyleSheet.create({
+    scroll: {
+    flexGrow: 1,
+    justifyContent: "center", 
+    },
+
     body: {
         alignItems: "center",
+        justifyContent: "center",
     },
     welcome: {
-        paddingTop: 28,
+      paddingBottom: "8%",
         fontFamily: "SquadaOne",
         fontSize: 48,
     },
     loginView: {
-        marginTop: "10%",
         width: "80%",
     },
     fieldName: {
