@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FCF7F8",
         display: "flex",
         width: "92%",
-        height: "auto",
+        height: 100,
         padding: 4,
         alignSelf: "center",
         alignItems: "center",

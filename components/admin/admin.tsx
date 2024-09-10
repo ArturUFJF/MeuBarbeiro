@@ -47,6 +47,7 @@ export default function AdminScreen(){
 
     return <>
 
+    <ScrollView>
     <View style={styles.header}>
 
         <View style={styles.buttonBody}>
@@ -63,15 +64,14 @@ export default function AdminScreen(){
     
     {/* <Search/> */}
 
-    <Text style={styles.title}>Barbearias</Text>
-    
-    <ScrollView style={styles.body}>
+    <Text style={styles.title}>Barbearias</Text>  
 
+    <ScrollView style={styles.body}>
         <FlatList data={barbershop}
             keyExtractor={(item) => item.id.toString()} 
             renderItem={({ item }) => <AdminBarbershop barberShop={item} />} // Renderiza cada item
             />
-
+    </ScrollView>
     </ScrollView>
     </>
 }
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: "column",
         width: "100%",
-        height: "12%",
+        height: "20%",
         justifyContent: "space-between",
         paddingBottom: 8,
         borderBottomWidth: 1,
