@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Pressable, StyleSheet, Alert, ScrollView } from "react-native";
 import axios from "axios";
 
-export default function ModalPost() {
+export default function ModalPostBarbershop() {
   // Declaração de estados
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");

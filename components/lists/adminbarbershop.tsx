@@ -39,9 +39,7 @@ export default function Product({ barberShop }:any){
     
     <View style={styles.body}>
 
-    <Image style={styles.image}
-    source={require("../../assets/images/BarbeariaMineira.jpg")}    
-    />
+    <Text style={styles.dateText}>ID: {barberShop.id}</Text>
 
     <View style={styles.textBody}>
         <Text style={styles.barberShopText}>{barberShop.name}</Text>
@@ -80,7 +78,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         alignItems: "center",
         flexDirection: "row",
-        borderBottomWidth: 2,
+        borderWidth: 1,
         borderColor: "black",
         justifyContent: "space-around",
 
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
     },
 
     textBody: {
-        width: "36%",
+        width: "48%",
         height: "96%",
         justifyContent: "space-around",
     },
@@ -139,14 +137,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "#272D2D",
-    },
-
-    image: {
-        marginLeft: 4,
-        borderRadius: 360,
-        width: 52,
-        height: 52,
-        alignSelf: "center",
     },
 
     barberShopText: {

@@ -12,9 +12,9 @@ export default function home(){
     const fetchBarbershop = async () => {
         try {
             const newBarbershops = [];
-            let id = 15;
+            let id = 26;
 
-            while(id<1000){
+            while (id < 1000) {
                 const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${id}`, {
                     method: 'GET',
                     headers: {
@@ -23,37 +23,36 @@ export default function home(){
                     }
                 });
                 const data = await response.json();
-    
-                console.log(data);
-                console.log(data.barberShop);
-                
+
                 if (data && data.barberShop) {
-                    newBarbershops.push(data.barberShop); // Adiciona a barbearia ao array temporário
+                    // Adiciona os produtos ao objeto da barbearia
+                    const barbershopWithProducts = {
+                        ...data.barberShop,
+                        products: data.products || [] // Se houver produtos, adicione-os
+                    };
+                    newBarbershops.push(barbershopWithProducts); // Adiciona a barbearia com produtos
                 }
 
-                if(data.status!=200){
-                break;
+                if (data.status != 200) {
+                    break;
                 }
                 id++;
             }
             setBarbershop(newBarbershops); // Atualiza o estado com todas as barbearias
-            }
-         catch (error) {
+        } catch (error) {
             console.error("Erro ao buscar barbearias:", error);
         }
     };
 
     useEffect(() => {
         fetchBarbershop();
-    }, []); // O array vazio [] como segundo argumento garante que o fetch seja feito apenas uma vez ao montar o componente
+    }, []);
 
     return <>
-
-        {/* <Search/> */}
         
-    <FlatList contentContainerStyle={styles.list} data={barbershop} // Passa o array de barbearias como dados
-            keyExtractor={(item) => item.id.toString()} // Extrai uma chave única de cada item
-            renderItem={({ item }) => <Barbershop barberShop={item} />} // Renderiza cada item usando o componente AdminBarbershop e passa a barbearia como prop
+    <FlatList contentContainerStyle={styles.list} data={barbershop}
+            keyExtractor={(item) => item.id.toString()} 
+            renderItem={({ item }) => <Barbershop barberShop={item} />} // Renderiza cada item
             />
 
     </>

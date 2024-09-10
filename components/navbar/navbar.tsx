@@ -10,7 +10,8 @@ import ScheduleScreen from "../schedule/schedule";
 import HomeScreen from "../home/home";
 import ContactScreen from "../contact/contact";
 import IndividualBarberShopScreen from "../individualbarbershop/individualbarbershop";
-import ModalScreen from "../admin/modalPost";
+import ModalPostBarbershop from "../admin/modalPostBarbershop";
+import ModalPostProduct from "../admin/modalPostProduct";
 import ModalPut from "../admin/modalPut";
 
 export default function Navbar () {
@@ -38,7 +39,7 @@ export default function Navbar () {
     
     </View>
 
-    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Admin" screenOptions={{
+    <Drawer.Navigator drawerContent={CustomDrawer} backBehavior="history" initialRouteName="Home" screenOptions={{
     headerShown: false,
     swipeEnabled: true, // Oculta o cabeçalho
     // drawerActiveTintColor: 'red', // Cor do texto/ícone quando o item está ativo
@@ -50,9 +51,11 @@ export default function Navbar () {
         <Drawer.Screen name="Admin" component={AdminScreen}/>
         <Drawer.Screen name="Agenda" component={ScheduleScreen}/>
         <Drawer.Screen name="Contact" component={ContactScreen}/>
-        <Drawer.Screen name="ModalCriar" component={ModalScreen}/>
+        <Drawer.Screen name="ModalPostBarbershop" component={ModalPostBarbershop}/>
+        <Drawer.Screen name="ModalPostProduct" component={ModalPostProduct}/>
         <Drawer.Screen name="ModalPut" component={ModalPut}/>
         <Drawer.Screen name="IndividualBarberShop" component={IndividualBarberShopScreen}/>
+        
     </Drawer.Navigator>
     </>
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Image, View, Text, StyleSheet, Pressable } from "react-native";
 
 
-export default function Service(){
+export default function Service({ product }:any){
     return <>
     
     <View style={styles.body}>
@@ -14,8 +14,8 @@ export default function Service(){
     />
 
     <View style={styles.textBody}>
-        <Text style={styles.barberShopText}>Corte</Text>
-        <Text style={styles.dateText}>R$40,00</Text>
+        <Text style={styles.barberShopText}>{product.name}</Text>
+        <Text style={styles.dateText}> R${product.price}</Text>
     </View>
 
     </View>

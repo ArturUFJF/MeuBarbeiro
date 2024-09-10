@@ -1,40 +1,14 @@
 import React, {useState, useEffect} from "react";
-import {ScrollView, View, Text, Pressable, StyleSheet, Image, Dimensions} from "react-native";
-import Search from "../search";
+import {ScrollView, View, Text, Pressable, StyleSheet, Image, Dimensions, FlatList} from "react-native";
 import Service from "../lists/service";
 
 export default function IndividualBarberShop({ route }:any){
 
     const { barberShop } = route.params;
-    const [barbershop, setBarbershop] = useState(barberShop); // Estado para armazenar cada item barbearia
+    const [products, setProducts] = useState(barberShop.products || []);
     
-    useEffect(() => {
-        if (!barbershop){
-            fetchBarbershop();
-        }
-    }, []); // O array vazio [] como segundo argumento garante que o fetch seja feito apenas uma vez ao montar o componente
-   
-    const fetchBarbershop = async () => {
-        try {
-                const response = await fetch(`https://treinamentoapi.codejr.com.br/api/artur/barberShop/${barberShop.id}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                    }
-                });
-                const data = await response.json();
-    
-                console.log(data);
-                console.log(data.barberShop);
-                setBarbershop(data.barberShop); // Atualiza o estado com todas as barbearias
-            }
-         catch (error) {
-            console.error("Erro ao buscar barbearias:", error);
-        }
-    };
-
-
+    console.log("Produtos: ");
+    console.log(products);
 
     return <>
           <Text style={styles.title}>{barberShop.name}</Text>
@@ -51,14 +25,12 @@ export default function IndividualBarberShop({ route }:any){
     </View>
     
         <Text style={styles.titleServices}>Serviços</Text>
-        {/* <Search/> */}
 
-        <Service/>
-        <Service/>
-        <Service/>  
-        <Service/>
-        <Service/>
-        <Service/>
+        <FlatList 
+            data={products} 
+            keyExtractor={(item) => item.price} 
+            renderItem={({ item }) => <Service product={item} />} // Renderiza cada item 
+            />
 
         <Text style={styles.titleServices}>Vantagens</Text>
         <Text style={styles.advantagesText}>{barberShop.advantages}</Text>
