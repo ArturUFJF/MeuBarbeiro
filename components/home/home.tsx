@@ -3,7 +3,7 @@ import {View, StyleSheet, FlatList, Text} from "react-native";
 import Barbershop from "../lists/barbershop";
 
 
-export default function home(){
+export default function Home(){
 
     const [barbershop, setBarbershop] = useState([]); // Estado para armazenar cada item barbearia
 
